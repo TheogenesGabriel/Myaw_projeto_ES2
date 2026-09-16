@@ -1,6 +1,0 @@
-{
-  "name": "Myow - Sistema de Gestão de Clínica Veterinária",
-  "description": "Sistema completo de gestão para clínicas veterinárias com controle de tutores, pacientes, agendamentos, atendimentos clínicos, estoque, faturamento e funcionários.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

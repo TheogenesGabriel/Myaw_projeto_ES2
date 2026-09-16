@@ -1,0 +1,441 @@
+/* ==========================================================================
+   MYOW VETERINÁRIA - FIGMA DESIGN SYSTEM THEME (JavaFX CSS)
+   Cores Principais:
+   - Deep Pine Teal (Fundo Canvas): #052e27 / #07352f
+   - Dark Pine Primary (Botões/Destaques): #064e43 / #053f36
+   - Mint Green Accent: #10b981 / #d1fae5 / #059669
+   - White Cards: #ffffff
+   - Slate Neutrals: #0f172a, #334155, #64748b, #e2e8f0, #f8fafc
+   ========================================================================== */
+
+/* --- Raiz e Fontes Gerais --- */
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-accent: #064e43;
+    -fx-focus-color: #0d9488;
+    -fx-faint-focus-color: transparent;
+}
+
+/* --- Canvas Principal (Dark Pine Teal) --- */
+.canvas-background {
+    -fx-background-color: #062e28;
+}
+
+.canvas-background-gradient {
+    -fx-background-color: linear-gradient(to bottom, #07352f, #052a24);
+}
+
+/* --- Barra de Topo Curva Branca (Signature Arch / Dome) --- */
+.brand-arch-container {
+    -fx-alignment: center;
+    -fx-padding: 0 0 16 0;
+}
+
+.brand-arch {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 0 0 140 140;
+    -fx-min-width: 420px;
+    -fx-pref-width: 440px;
+    -fx-max-width: 500px;
+    -fx-min-height: 80px;
+    -fx-pref-height: 85px;
+    -fx-alignment: center;
+    -fx-padding: 10 30 14 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 14, 0, 0, 4);
+}
+
+/* --- Cards Flutuantes Brancos --- */
+.figma-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 16, 0, 0, 4);
+}
+
+.figma-card-header {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 14 20;
+    -fx-alignment: center-left;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.10), 12, 0, 0, 3);
+}
+
+.card-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.card-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748b;
+}
+
+.card-breadcrumb {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+}
+
+.card-breadcrumb-highlight {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #064e43;
+}
+
+/* --- Botões do Protótipo Figma --- */
+/* Botão Primário (Deep Pine Teal) */
+.button-primary {
+    -fx-background-color: #064e43;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 9 18;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.button-primary:hover {
+    -fx-background-color: #053b33;
+}
+
+.button-primary:pressed {
+    -fx-background-color: #042d27;
+}
+
+/* Botão Branco para fundos escuros (como no modal Cadastrar Tutor) */
+.button-white {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #064e43;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12 24;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0, 0, 2);
+}
+
+.button-white:hover {
+    -fx-background-color: #f1f5f9;
+}
+
+.button-white:pressed {
+    -fx-background-color: #e2e8f0;
+}
+
+/* Botão de Ação na Tabela (Selecionar) */
+.button-select {
+    -fx-background-color: #064e43;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-padding: 6 12;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.button-select:hover {
+    -fx-background-color: #053b33;
+}
+
+/* Botão Secundário */
+.button-secondary {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #334155;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 8;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #0f172a;
+}
+
+/* Botão Perigo / Cancelar */
+.button-danger {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 8;
+    -fx-border-color: #fecaca;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.button-danger:hover {
+    -fx-background-color: #fecaca;
+}
+
+/* --- Campos de Entrada de Texto --- */
+.text-field, .password-field, .combo-box, .date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #0f172a;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.text-field:focused, .password-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #064e43;
+    -fx-border-width: 1.5;
+}
+
+/* Campos em fundo escuro (Cadastrar Tutor Figma) */
+.text-field-dark-theme {
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+    -fx-background-radius: 8;
+    -fx-padding: 10 14;
+    -fx-font-size: 13px;
+    -fx-text-fill: #0f172a;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.text-field-dark-theme:focused {
+    -fx-border-color: #34d399;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+}
+
+.label-form-dark {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+/* --- Badges & Pills --- */
+.badge-admin {
+    -fx-background-color: #e6fffa;
+    -fx-text-fill: #0d9488;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-border-color: #0d9488;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+
+.badge-vet {
+    -fx-background-color: #e0f2fe;
+    -fx-text-fill: #0284c7;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-border-color: #0284c7;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+
+.badge-recepcao {
+    -fx-background-color: #f3e8ff;
+    -fx-text-fill: #7c3aed;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-border-color: #7c3aed;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+
+.badge-ativo {
+    -fx-background-color: #d1fae5;
+    -fx-text-fill: #065f46;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+}
+
+.badge-inativo {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+}
+
+.badge-crmv {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #0f766e;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+
+.badge-cadastrado {
+    -fx-background-color: #a7f3d0;
+    -fx-text-fill: #065f46;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 8;
+    -fx-background-radius: 6;
+}
+
+.badge-horario-disponivel {
+    -fx-background-color: #d1fae5;
+    -fx-text-fill: #065f46;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10;
+    -fx-background-radius: 8;
+}
+
+.badge-voce {
+    -fx-background-color: #a7f3d0;
+    -fx-text-fill: #065f46;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 6;
+    -fx-background-radius: 4;
+}
+
+/* --- Estilo das Tabelas JavaFX --- */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-padding: 12 10;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+.table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 6 0;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #ecfdf5;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #064e43;
+}
+
+.table-cell {
+    -fx-padding: 10 12;
+    -fx-alignment: center-left;
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 12px;
+}
+
+/* --- Barra de Paginação (Figma) --- */
+.pagination-container {
+    -fx-alignment: center-between;
+    -fx-padding: 12 4;
+    -fx-background-color: transparent;
+}
+
+.pagination-info {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+}
+
+.pagination-btn {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #475569;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-background-radius: 6;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.pagination-btn-active {
+    -fx-background-color: #064e43;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 11;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* --- Sidebar Lateral --- */
+.sidebar {
+    -fx-background-color: #04241f;
+    -fx-pref-width: 240px;
+    -fx-padding: 16 12;
+}
+
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 14;
+    -fx-background-radius: 8;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+.sidebar-btn:hover {
+    -fx-background-color: #063931;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar-btn-active {
+    -fx-background-color: #064e43;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 14;
+    -fx-background-radius: 8;
+    -fx-alignment: center-left;
+    -fx-border-color: #10b981;
+    -fx-border-width: 0 0 0 3;
+}
+
+.user-card-sidebar {
+    -fx-background-color: #063931;
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+}

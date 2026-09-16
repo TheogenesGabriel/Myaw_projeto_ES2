@@ -1,0 +1,11 @@
+{
+  "name": "myow-sistema-gestao-veterinaria",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.ts",
+    "build": "echo 'Build successful'",
+    "start": "node server.ts"
+  }
+}

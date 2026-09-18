@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" styleClass="main-stage-bg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.clinica.controller.CadastrarPetController">
+    <content>
+        <StackPane minHeight="760.0" style="-fx-background-color: transparent;">
+            <children>
+                <VBox maxWidth="650.0" spacing="18.0" styleClass="card-container">
+                    <children>
+                        <!-- Cabeçalho -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                            <children>
+                                                <Label styleClass="title-medium" text="Cadastrar Pet (Paciente)" />
+                                                <Label styleClass="badge-uc" text="UC03" />
+                                            </children>
+                                        </HBox>
+                                        <Label styleClass="subtitle" text="Vincule o animal ao tutor e registre as características clínicas" />
+                                    </children>
+                                </VBox>
+                                <Button onAction="#handleVoltar" styleClass="btn-secondary" text="← Voltar" />
+                            </children>
+                        </HBox>
+
+                        <!-- Formulário -->
+                        <VBox spacing="14.0">
+                            <children>
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Tutor Responsável *" />
+                                        <ComboBox fx:id="cbTutor" maxWidth="1.7976931348623157E308" promptText="Selecione o tutor já cadastrado..." />
+                                    </children>
+                                </VBox>
+
+                                <GridPane hgap="14.0" vgap="14.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="60.0" />
+                                        <ColumnConstraints percentWidth="40.0" />
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox spacing="6.0" GridPane.columnIndex="0">
+                                            <children>
+                                                <Label styleClass="field-label" text="Nome do Pet *" />
+                                                <TextField fx:id="txtNomePet" promptText="Ex: Luke, Mel, Simba" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="6.0" GridPane.columnIndex="1">
+                                            <children>
+                                                <Label styleClass="field-label" text="Espécie *" />
+                                                <ComboBox fx:id="cbEspecie" maxWidth="1.7976931348623157E308" promptText="Espécie" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                    </rowConstraints>
+                                </GridPane>
+
+                                <GridPane hgap="14.0" vgap="14.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50.0" />
+                                        <ColumnConstraints percentWidth="25.0" />
+                                        <ColumnConstraints percentWidth="25.0" />
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox spacing="6.0" GridPane.columnIndex="0">
+                                            <children>
+                                                <Label styleClass="field-label" text="Raça *" />
+                                                <TextField fx:id="txtRaca" promptText="Ex: SRD, Poodle, Siamês" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="6.0" GridPane.columnIndex="1">
+                                            <children>
+                                                <Label styleClass="field-label" text="Idade (anos) *" />
+                                                <TextField fx:id="txtIdade" promptText="Ex: 3" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="6.0" GridPane.columnIndex="2">
+                                            <children>
+                                                <Label styleClass="field-label" text="Sexo *" />
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-padding: 8 0 0 0;">
+                                                    <children>
+                                                        <RadioButton fx:id="rbMacho" selected="true" style="-fx-text-fill: white;" text="M">
+                                                            <toggleGroup>
+                                                                <ToggleGroup fx:id="tgSexo" />
+                                                            </toggleGroup>
+                                                        </RadioButton>
+                                                        <RadioButton fx:id="rbFemea" style="-fx-text-fill: white;" text="F" toggleGroup="$tgSexo" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                    </rowConstraints>
+                                </GridPane>
+
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Histórico Médico / Alergias / Observações" />
+                                        <TextArea fx:id="txtHistorico" prefRowCount="3" promptText="Descreva vacinas já tomadas, alergias alimentares ou medicamentosas, etc." />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Botões de Ação -->
+                        <HBox alignment="CENTER_RIGHT" spacing="12.0" style="-fx-padding: 12 0 0 0;">
+                            <children>
+                                <Button onAction="#handleVoltar" styleClass="btn-secondary" text="Cancelar" />
+                                <Button onAction="#handleSalvar" styleClass="btn-primary" text="Salvar Paciente" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+        </StackPane>
+    </content>
+</ScrollPane>

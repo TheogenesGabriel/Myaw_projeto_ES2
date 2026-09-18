@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane prefHeight="700.0" prefWidth="920.0" styleClass="main-stage-bg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.clinica.controller.LoginController">
+    <children>
+        <VBox alignment="CENTER" maxWidth="440.0" spacing="20.0" styleClass="card-container">
+            <children>
+                <!-- Logotipo / Ícone -->
+                <VBox alignment="CENTER" spacing="6.0">
+                    <children>
+                        <Label style="-fx-font-size: 32px;" text="🐾" />
+                        <Label styleClass="title-large" text="Clínica Veterinária" />
+                        <Label styleClass="subtitle" text="Sistema de Gestão Clínica &amp; Prontuários" />
+                    </children>
+                </VBox>
+
+                <!-- Formulário de Login -->
+                <VBox spacing="14.0">
+                    <children>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label styleClass="field-label" text="Usuário" />
+                                <TextField fx:id="txtUsuario" promptText="Digite o usuário de acesso" text="admin" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label styleClass="field-label" text="Senha" />
+                                <PasswordField fx:id="txtSenha" promptText="Digite sua senha" text="admin" />
+                            </children>
+                        </VBox>
+
+                        <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="* Acesso restrito com usuário 'admin' e senha 'admin'" />
+
+                        <Button maxWidth="1.7976931348623157E308" onAction="#handleLogin" styleClass="btn-primary" text="ENTRAR NO SISTEMA" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="36.0" left="36.0" right="36.0" top="36.0" />
+            </padding>
+        </VBox>
+    </children>
+</StackPane>

@@ -42,15 +42,31 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(MainApp.class.getResource(fxmlPath));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 950, 720);
-            
-            // Adiciona a folha de estilo CSS
-            var cssUrl = MainApp.class.getResource("/br/com/clinica/css/style.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
+
+            if (primaryStage.getScene() == null) {
+                Scene scene = new Scene(root, 950, 720);
+                // Adiciona a folha de estilo CSS
+                var cssUrl = MainApp.class.getResource("/br/com/clinica/css/style.css");
+                if (cssUrl != null) {
+                    scene.getStylesheets().add(cssUrl.toExternalForm());
+                }
+                primaryStage.setScene(scene);
+            } else {
+                // Preserva o estado de janela maximizada (tela cheia) ao navegar entre telas
+                boolean wasMaximized = primaryStage.isMaximized();
+                double prevWidth = primaryStage.getWidth();
+                double prevHeight = primaryStage.getHeight();
+
+                primaryStage.getScene().setRoot(root);
+
+                if (wasMaximized) {
+                    primaryStage.setMaximized(true);
+                } else if (prevWidth > 0 && prevHeight > 0) {
+                    primaryStage.setWidth(prevWidth);
+                    primaryStage.setHeight(prevHeight);
+                }
             }
 
-            primaryStage.setScene(scene);
             if (titulo != null) {
                 primaryStage.setTitle(titulo);
             }

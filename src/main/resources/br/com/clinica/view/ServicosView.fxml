@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" styleClass="main-stage-bg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.clinica.controller.ServicosController">
+    <content>
+        <StackPane minHeight="700.0" style="-fx-background-color: transparent;">
+            <children>
+                <VBox maxWidth="720.0" spacing="18.0" styleClass="card-container">
+                    <children>
+                        <!-- Cabeçalho -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="title-large" text="Serviços da Clínica" />
+                                                <Label style="-fx-background-color: #008f7a; -fx-text-fill: white; -fx-padding: 3 8; -fx-background-radius: 12; -fx-font-size: 10px; -fx-font-weight: bold;" text="ACESSO TOTAL" />
+                                            </children>
+                                        </HBox>
+                                        <Label styleClass="subtitle" text="Selecione diretamente o caso de uso que deseja executar:" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <!-- Lista Direta de Casos de Uso -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <!-- UC02 -->
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC02" styleClass="service-card-btn">
+                                    <graphic>
+                                        <HBox alignment="CENTER_LEFT" spacing="14.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 20px;" text="👤" />
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Cadastrar Tutor" />
+                                                                <Label styleClass="badge-uc" text="UC02" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 11px;" text="Nome, CPF, Telefone, E-mail e Endereço do responsável" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+
+                                <!-- UC03 -->
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC03" styleClass="service-card-btn">
+                                    <graphic>
+                                        <HBox alignment="CENTER_LEFT" spacing="14.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 20px;" text="🐾" />
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Cadastrar Pet (Paciente)" />
+                                                                <Label styleClass="badge-uc" text="UC03" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 11px;" text="Espécie, Raça, Idade, Sexo e Histórico de Saúde" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+
+                                <!-- UC04 -->
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC04" styleClass="service-card-btn">
+                                    <graphic>
+                                        <HBox alignment="CENTER_LEFT" spacing="14.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 20px;" text="📅" />
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Agendar Consulta" />
+                                                                <Label styleClass="badge-uc" text="UC04" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 11px;" text="Marcação de consulta com paciente, veterinário e horário" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+
+                                <!-- UC05 -->
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC05" styleClass="service-card-btn">
+                                    <graphic>
+                                        <HBox alignment="CENTER_LEFT" spacing="14.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 20px;" text="🔄" />
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Alterar Consulta" />
+                                                                <Label styleClass="badge-uc" text="UC05" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 11px;" text="Reagendamento ou edição de consultas já agendadas" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+
+                                <!-- UC06 -->
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC06" styleClass="service-card-btn">
+                                    <graphic>
+                                        <HBox alignment="CENTER_LEFT" spacing="14.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 20px;" text="❌" />
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <Label style="-fx-text-fill: #fca5a5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Cancelar Consulta" />
+                                                                <Label style="-fx-background-color: rgba(239, 68, 68, 0.2); -fx-text-fill: #fca5a5; -fx-padding: 2 6; -fx-background-radius: 6; -fx-font-size: 10px; -fx-font-weight: bold;" text="UC06" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 11px;" text="Cancelamento de agendamento e liberação de horário" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+
+                                <!-- UC07 -->
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC07" styleClass="service-card-btn">
+                                    <graphic>
+                                        <HBox alignment="CENTER_LEFT" spacing="14.0">
+                                            <children>
+                                                <Label style="-fx-font-size: 20px;" text="🩺" />
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <Label style="-fx-text-fill: #6ee7b7; -fx-font-weight: bold; -fx-font-size: 14px;" text="Registrar Atendimento Médico" />
+                                                                <Label style="-fx-background-color: rgba(16, 185, 129, 0.2); -fx-text-fill: #6ee7b7; -fx-padding: 2 6; -fx-background-radius: 6; -fx-font-size: 10px; -fx-font-weight: bold;" text="UC07" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 11px;" text="Prontuário clínico, diagnóstico, procedimentos e prescrições" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </VBox>
+
+                        <!-- Barra Inferior -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-padding: 12 0 0 0; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 1 0 0 0;">
+                            <children>
+                                <Button onAction="#handleLogout" styleClass="btn-secondary" text="← Sair / Trocar Perfil" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label style="-fx-text-fill: #6ee7b7; -fx-font-size: 12px;" text="● Conectado ao SQLite (clinica_vet.db)" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+        </StackPane>
+    </content>
+</ScrollPane>

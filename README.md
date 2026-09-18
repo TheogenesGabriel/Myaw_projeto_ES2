@@ -1,71 +1,61 @@
-# Myaw - Sistema Veterinário
+# Sistema de Gerenciamento de Clínica Veterinária (JavaFX + SQLite)
 
-Projeto desenvolvido para a disciplina de Engenharia de Software 2 da Universidade Federal do Vale do São Francisco (Univasf).
+Aplicação desktop desenvolvida em **JavaFX 21** e persistência local com **SQLite**, implementando rigorosamente a especificação do projeto e os casos de uso solicitados.
 
-## 📋 Sobre o projeto
+---
 
-O **Myow** é um sistema desktop para clínicas veterinárias, com interface gráfica feita em **JavaFX**. Atualmente o sistema permite:
+## 📋 Casos de Uso Implementados
 
-- **Cadastro de Tutores**: nome completo, CPF, telefone, e-mail e endereço.
-- **Cadastro de Pacientes (pets)**: nome, espécie, raça, idade, sexo e histórico médico, com vínculo a um tutor.
+1. **Login do Sistema**: Autenticação restrita (`admin` / `admin`).
+2. **UC02 - Cadastrar Tutor**: Cadastro completo de tutores (Nome, CPF com máscara/validação, Telefone, E-mail e Endereço).
+3. **UC03 - Cadastrar Paciente (Animal)**: Registro do animal vinculado ao seu tutor (Nome, Espécie, Raça, Idade, Sexo e Histórico).
+4. **UC04 - Agendar Consulta**: Seleção do paciente, médico veterinário, data e horário com validação de conflitos.
+5. **UC05 - Alterar Consulta**: Reagendamento de data, horário ou profissional de consultas agendadas.
+6. **UC06 - Cancelar Consulta**: Cancelamento com registro obrigatório de justificativa e liberação da vaga.
+7. **UC07 – Registrar Atendimento Médico**: Preenchimento do prontuário eletrônico (anamnese, sinais vitais, diagnóstico clínico, procedimentos realizados e prescrição medicamentosa).
 
-O projeto está em fase inicial de desenvolvimento: os cadastros já validam campos obrigatórios e exibem mensagens de sucesso/erro na interface, mas a persistência em banco de dados ainda não foi implementada (os dados são apenas criados em memória).
+---
 
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias Utilizadas
 
-- **Java 11**
-- **JavaFX 13** (interface gráfica)
-- **Maven** (gerenciador de dependências e build)
+- **Linguagem**: Java 17+ (ou Java 21)
+- **Interface Gráfica**: JavaFX (FXML + CSS personalizado com paleta escura `#012f27` e acentos `#00c49f`)
+- **Persistência**: SQLite 3 com driver JDBC oficial (`sqlite-jdbc`)
+- **Gerenciador de Dependências**: Apache Maven
 
-## 📁 Estrutura do projeto
+---
 
-```
-sistema-myow/
-├── pom.xml                          # Configuração do Maven
-└── src/main/
-    ├── java/com/myow/
-    │   ├── App.java                 # Ponto de entrada da aplicação
-    │   ├── Tutor.java               # Modelo do Tutor
-    │   ├── Paciente.java            # Modelo do Paciente (pet)
-    │   ├── TutorController.java     # Lógica da tela de cadastro de tutor
-    │   ├── PacienteController.java  # Lógica da tela de cadastro de paciente
-    │   ├── PrimaryController.java
-    │   └── SecondaryController.java
-    └── resources/com/myow/
-        ├── TelaCadastroTutor.fxml
-        ├── TelaCadastroPaciente.fxml
-        ├── primary.fxml / secondary.fxml
-        └── global1-style.css
-```
-
-## ▶️ Como rodar o projeto na sua máquina
+## 🚀 Como Executar o Projeto
 
 ### Pré-requisitos
+- **Java JDK 17 ou superior** instalado e configurado no `PATH` (`JAVA_HOME`).
+- **Apache Maven** instalado (`mvn -version`).
 
-- **JDK 11** instalado
-- **Maven** instalado e configurado no `PATH`
+### 1. Executando via Linha de Comando (Maven)
+Abra o terminal na pasta raiz do projeto (`javafx-clinica`) e execute:
 
-Verifique se estão prontos:
 ```bash
-java -version
-mvn -version
+mvn clean compile javafx:run
 ```
 
-### Passo a passo
+O Maven baixará automaticamente o JavaFX e o driver do SQLite, criará o banco de dados `clinica_vet.db` automaticamente caso não exista e abrirá a tela de Login do sistema!
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/TheogenesGabriel/Myaw_projeto_ES2.git
-   cd Myaw_projeto_ES2/sistema-myow
-   ```
+---
 
-2. Rode a aplicação com o plugin do JavaFX:
-   ```bash
-   mvn clean javafx:run
-   ```
+### 2. Abrindo no IntelliJ IDEA
+1. Abra o IntelliJ IDEA.
+2. Selecione **File > Open** e escolha a pasta `javafx-clinica`.
+3. O IntelliJ detectará o `pom.xml` e carregará as dependências do Maven automaticamente.
+4. Na aba lateral do Maven, navegue em: `Plugins > javafx > javafx:run` e dê dois cliques, ou execute diretamente a classe `br.com.clinica.MainApp`.
 
-Isso vai compilar o projeto e abrir a janela do sistema (tela de cadastro de tutor).
+---
 
-## 👥 Contexto acadêmico
+### 3. Abrindo no Eclipse ou NetBeans
+1. No Eclipse: **File > Import > Existing Maven Projects** e selecione a pasta.
+2. Clique com o botão direito no projeto > **Run As > Maven build...** e informe o goal: `javafx:run`.
 
-Este projeto é um trabalho da disciplina de Engenharia de Software 2 (Univasf), com foco em aplicar conceitos de POO, levantamento de requisitos e casos de uso (ex.: UC02 - Cadastrar Tutor, UC03 - Cadastrar Paciente) no desenvolvimento de um sistema real.
+---
+
+## 🔐 Credenciais de Acesso
+- **Usuário**: `admin`
+- **Senha**: `admin`

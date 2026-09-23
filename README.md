@@ -1,93 +1,143 @@
-# Myow — Sistema de Gestão de Clínica Veterinária
+# 🐾 Myow — Gestão Veterinária Inteligente
 
-Aplicação desktop desenvolvida em **Java 17** e **JavaFX**, com persistência em **SQLite via JDBC**, para a disciplina de **Engenharia de Software II**.
+Sistema desktop para gestão de clínicas e hospitais veterinários, desenvolvido em **Java 17** e **JavaFX**, com persistência local em **SQLite (JDBC)**.
 
-## Sobre o projeto
+Projeto acadêmico da disciplina de **Engenharia de Software II**.
 
-O Myow é um sistema para gestão de clínicas veterinárias. A aplicação permite cadastrar tutores e animais, agendar consultas, registrar atendimentos, consultar prontuários, controlar estoque, registrar pagamentos, gerar relatórios e gerenciar funcionários.
+![Java](https://img.shields.io/badge/Java-17+-orange)
+![JavaFX](https://img.shields.io/badge/JavaFX-17-blue)
+![SQLite](https://img.shields.io/badge/SQLite-JDBC-lightgrey)
+![Maven](https://img.shields.io/badge/Maven-3.8+-red)
 
-O sistema funciona localmente, sem depender de navegador, serviços em nuvem ou APIs externas.
+---
 
-## Arquitetura
+## 📌 Sobre o projeto
 
-O projeto é dividido em camadas:
+O Myow centraliza a rotina de uma clínica veterinária em uma única aplicação. Com ele é possível:
+
+- cadastrar tutores e animais (pacientes);
+- agendar, alterar e cancelar consultas;
+- registrar atendimentos e consultar o prontuário clínico;
+- controlar estoque e medicamentos, com baixa automática durante o atendimento;
+- registrar pagamentos e faturamento;
+- gerar relatórios, exportáveis em **PDF** e **Excel (.xlsx)**;
+- gerenciar funcionários e permissões de acesso.
+
+O sistema roda **100% local**, sem navegador, serviços em nuvem ou APIs externas.
+
+## 🖼️ Telas
+
+| Login | Painel do veterinário |
+| :---: | :---: |
+| ![Tela de login](img/login.jpeg) | ![Painel do veterinário](img/painel-vet.jpeg) |
+
+| Painel da recepção | Caixa & Faturamento |
+| :---: | :---: |
+| ![Painel da recepção](img/painel-recepcao.jpeg) | ![Caixa e faturamento](img/caixa.jpeg) |
+
+## 🧰 Tecnologias
+
+| Categoria | Tecnologia |
+| --- | --- |
+| Linguagem | Java 17 |
+| Interface | JavaFX 17 |
+| Banco de dados | SQLite (`sqlite-jdbc`) |
+| Exportação de relatórios | OpenPDF (PDF) e Apache POI (Excel) |
+| Build | Maven |
+| Testes | JUnit 5 |
+
+## 🏗️ Arquitetura
+
+O projeto segue uma arquitetura em camadas, em que cada camada conversa apenas com a imediatamente abaixo:
 
 ```text
-JavaFX
-   ↓
-Services
-   ↓
-DAOs
-   ↓
+JavaFX (view)
+     ↓
+Services  (regras de negócio e controle de acesso)
+     ↓
+DAOs      (acesso a dados)
+     ↓
 SQLite / JDBC
 ```
 
-* **`model`**: entidades do sistema.
-* **`view`**: interfaces gráficas em JavaFX.
-* **`service`**: regras de negócio e controle de acesso.
-* **`dao`**: acesso ao banco de dados.
-* **`database`**: gerenciamento da conexão e inicialização do banco.
+| Pacote (`com.myow`) | Responsabilidade |
+| --- | --- |
+| `model` | Entidades do sistema |
+| `view` | Interfaces gráficas em JavaFX |
+| `service` | Regras de negócio e controle de acesso |
+| `dao` | Acesso ao banco de dados |
+| `database` | Gerenciamento da conexão e inicialização do banco |
 
-## Banco de Dados
-
-O banco utilizado é o **SQLite**, armazenado localmente em:
+### Estrutura de pastas
 
 ```text
-database/myow.db
+.
+├── database/
+│   ├── schema.sql      # estrutura das tabelas
+│   ├── seed.sql        # dados de demonstração
+│   └── myow.db         # banco SQLite local
+├── img/                # capturas de tela usadas neste README
+├── src/
+│   ├── main/java/com/myow/   # código-fonte da aplicação
+│   ├── main/resources/       # logo e tema CSS
+│   └── test/java/com/myow/   # testes automatizados
+└── pom.xml
 ```
 
-O banco possui 8 tabelas:
+## 🗄️ Banco de dados
 
-* `usuarios`
-* `tutores`
-* `pacientes`
-* `consultas`
-* `itens_estoque`
-* `atendimentos`
-* `atendimento_itens`
-* `faturamentos`
+O banco fica armazenado localmente em `database/myow.db` e é inicializado a partir de `database/schema.sql` (estrutura) e `database/seed.sql` (dados de demonstração).
 
-O projeto também mantém os scripts `schema.sql` e `seed.sql` na pasta `database`.
+**Tabelas (8):** `usuarios`, `tutores`, `pacientes`, `consultas`, `itens_estoque`, `atendimentos`, `atendimento_itens` e `faturamentos`.
 
-## Funcionalidades
+## ✅ Funcionalidades
 
-O sistema contempla os seguintes casos de uso:
+| Código | Caso de uso |
+| --- | --- |
+| UC01 | Realizar login |
+| UC02 | Cadastrar tutor |
+| UC03 | Cadastrar paciente |
+| UC04 | Agendar consulta |
+| UC05 | Alterar consulta |
+| UC06 | Cancelar consulta |
+| UC07 | Registrar atendimento médico |
+| UC08 | Consultar histórico clínico |
+| UC09 | Gerenciar estoque e medicamentos |
+| UC10 | Registrar pagamento e faturamento |
+| UC11 | Gerar relatórios |
+| UC12 | Gerenciar funcionários |
 
-| Código | Caso de Uso                       |
-| ------ | --------------------------------- |
-| UC01   | Realizar Login                    |
-| UC02   | Cadastrar Tutor                   |
-| UC03   | Cadastrar Paciente                |
-| UC04   | Agendar Consulta                  |
-| UC05   | Alterar Consulta                  |
-| UC06   | Cancelar Consulta                 |
-| UC07   | Registrar Atendimento Médico      |
-| UC08   | Consultar Histórico Clínico       |
-| UC09   | Gerenciar Estoque e Medicamentos  |
-| UC10   | Registrar Pagamento e Faturamento |
-| UC11   | Gerar Relatórios                  |
-| UC12   | Gerenciar Funcionários            |
+**Regras de negócio implementadas:**
 
-Entre as regras implementadas estão validações de cadastro, conflito de horários, controle de estoque, baixa de medicamentos durante o atendimento e controle de acesso por perfil.
+- validações de cadastro;
+- detecção de conflito de horários no agendamento;
+- controle de estoque, com alerta de itens em nível crítico no painel;
+- baixa automática de medicamentos durante o atendimento;
+- controle de acesso por perfil (RBAC).
 
-## Perfis de acesso
+## 🔐 Perfis de acesso
 
-O sistema possui três perfis:
+O controle de acesso é aplicado **tanto na interface quanto na camada de serviços**. Módulos disponíveis no menu lateral de cada perfil:
 
-* **Administrador**: acesso aos módulos administrativos e demais funcionalidades.
-* **Veterinário**: acesso às funcionalidades relacionadas ao atendimento clínico.
-* **Funcionário**: acesso às funcionalidades de recepção, cadastro, agendamento, estoque e faturamento, conforme as permissões definidas pelo sistema.
+| Módulo | Administrador | Veterinário | Funcionário (recepção) |
+| --- | :---: | :---: | :---: |
+| Painel Geral | ✅ | ✅ | ✅ |
+| Pacientes | ✅ | ✅ | ✅ |
+| Agendamentos | ✅ | ✅ | ✅ |
+| Estoque & Farmácia | ✅ | ✅ | ✅ |
+| Tutores | ✅ | — | ✅ |
+| Caixa & Faturamento | ✅ | — | ✅ |
+| Atendimento Clínico | ✅ | ✅ | — |
+| Prontuário | ✅ | ✅ | — |
+| Relatórios | ✅ | — | — |
+| Equipe & Acessos | ✅ | — | — |
 
-O controle de acesso é aplicado tanto na interface quanto na camada de serviços.
-
-## Como executar
+## 🚀 Como executar
 
 ### Pré-requisitos
 
-* **JDK 17 ou superior**
-* **Maven 3.8 ou superior**
-
-Verifique as instalações:
+- **JDK 17** ou superior
+- **Maven 3.8** ou superior
 
 ```bash
 java -version
@@ -96,17 +146,11 @@ mvn -version
 
 ### 1. Compilar
 
-Na pasta raiz do projeto:
-
 ```bash
 mvn clean compile
 ```
 
-O resultado esperado é:
-
-```text
-BUILD SUCCESS
-```
+Resultado esperado: `BUILD SUCCESS`.
 
 ### 2. Executar os testes
 
@@ -114,24 +158,26 @@ BUILD SUCCESS
 mvn test
 ```
 
-O projeto possui **10 testes automatizados**, cobrindo banco de dados, autenticação, recuperação de senha, cadastros, agendamento, estoque, relatórios, RBAC, sessão e geração de IDs.
+São **10 testes automatizados**, que cobrem: banco de dados, autenticação, recuperação de senha, cadastros, agendamento, estoque, relatórios, RBAC, sessão e geração de IDs.
 
-### 3. Executar a aplicação
+### 3. Iniciar a aplicação
 
 ```bash
 mvn javafx:run
 ```
 
-## Credenciais para demonstração
+## 🔑 Credenciais para demonstração
 
-| Perfil        | Login          | Senha      |
-| ------------- | -------------- | ---------- |
-| Administrador | `admin`        | `admin123` |
-| Veterinário   | `camila.vet`   | `123456`   |
-| Funcionário   | `bia.recepcao` | `123456`   |
+| Perfil | Login | Senha |
+| --- | --- | --- |
+| Administrador | `admin` | `admin123` |
+| Veterinário | `camila.vet` | `123456` |
+| Funcionário | `bia.recepcao` | `123456` |
 
-Para o fluxo de recuperação de senha, a resposta cadastrada para a pergunta de segurança é:
+**Recuperação de senha:** a resposta cadastrada para a pergunta de segurança ("Qual o nome da clínica?") é `myow`.
 
-```text
-myow
-```
+> ⚠️ Essas credenciais existem apenas para demonstração acadêmica. Em um ambiente real, as senhas não devem ser armazenadas em texto puro nem usar valores padrão.
+
+## 👥 Autores
+
+<!-- Nomes da equipe, professor(a) e instituição -->

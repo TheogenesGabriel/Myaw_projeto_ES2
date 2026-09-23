@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -10,9 +11,13 @@
         <VBox alignment="CENTER" maxWidth="440.0" spacing="20.0" styleClass="card-container">
             <children>
                 <!-- Logotipo / Ícone -->
-                <VBox alignment="CENTER" spacing="6.0">
+                <VBox alignment="CENTER" prefWidth="450.0" spacing="6.0">
                     <children>
-                        <Label style="-fx-font-size: 32px;" text="🐾" />
+                        <ImageView fitHeight="300.0" fitWidth="450.0" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/myow-logo.png" />
+                            </image>
+                        </ImageView>
                         <Label styleClass="title-large" text="Clínica Veterinária" />
                         <Label styleClass="subtitle" text="Sistema de Gestão Clínica &amp; Prontuários" />
                     </children>

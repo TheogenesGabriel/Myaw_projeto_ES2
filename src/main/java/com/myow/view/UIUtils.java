@@ -128,11 +128,12 @@ public class UIUtils {
             InputStream is = UIUtils.class.getResourceAsStream("/images/myow-logo.png");
             if (is != null) {
                 Image img = new Image(is);
-                ImageView iv = new ImageView(img);
-                iv.setFitHeight(height);
-                iv.setPreserveRatio(true);
-                iv.setSmooth(true);
-                return iv;
+                ImageView imageView = new ImageView(img);
+                imageView.setFitWidth(300.0);
+                imageView.setFitHeight(200.0);
+                imageView.setPreserveRatio(true);
+                imageView.setSmooth(true);
+                return imageView;
             }
         } catch (Exception ignored) {
         }

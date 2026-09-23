@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" styleClass="main-stage-bg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.clinica.controller.CadastrarTutorController">
+    <content>
+        <StackPane minHeight="720.0" style="-fx-background-color: transparent;">
+            <children>
+                <VBox maxWidth="650.0" spacing="18.0" styleClass="card-container">
+                    <children>
+                        <!-- Cabeçalho -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                            <children>
+                                                <Label styleClass="title-medium" text="Cadastrar Tutor" />
+                                                <Label styleClass="badge-uc" text="UC02" />
+                                            </children>
+                                        </HBox>
+                                        <Label styleClass="subtitle" text="Preencha os dados do tutor responsável pelo paciente" />
+                                    </children>
+                                </VBox>
+                                <Button onAction="#handleVoltar" styleClass="btn-secondary" text="← Voltar" />
+                            </children>
+                        </HBox>
+
+                        <!-- Formulário -->
+                        <VBox spacing="14.0">
+                            <children>
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Nome Completo *" />
+                                        <TextField fx:id="txtNome" promptText="Ex: Mariana Albuquerque" />
+                                    </children>
+                                </VBox>
+
+                                <GridPane hgap="14.0" vgap="14.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50.0" />
+                                        <ColumnConstraints percentWidth="50.0" />
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox spacing="6.0" GridPane.columnIndex="0">
+                                            <children>
+                                                <Label styleClass="field-label" text="CPF *" />
+                                                <TextField fx:id="txtCpf" promptText="000.000.000-00" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="6.0" GridPane.columnIndex="1">
+                                            <children>
+                                                <Label styleClass="field-label" text="Telefone / Celular *" />
+                                                <TextField fx:id="txtTelefone" promptText="(11) 98765-4321" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                    </rowConstraints>
+                                </GridPane>
+
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="E-mail *" />
+                                        <TextField fx:id="txtEmail" promptText="exemplo@email.com" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Endereço Completo *" />
+                                        <TextField fx:id="txtEndereco" promptText="Rua, número, complemento, bairro, cidade" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Botões de Ação -->
+                        <HBox alignment="CENTER_RIGHT" spacing="12.0" style="-fx-padding: 12 0 0 0;">
+                            <children>
+                                <Button onAction="#handleVoltar" styleClass="btn-secondary" text="Cancelar" />
+                                <Button onAction="#handleSalvar" styleClass="btn-primary" text="Salvar Tutor" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+        </StackPane>
+    </content>
+</ScrollPane>

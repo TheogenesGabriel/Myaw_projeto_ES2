@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" styleClass="main-stage-bg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.clinica.controller.AgendarConsultaController">
+    <content>
+        <StackPane minHeight="760.0" style="-fx-background-color: transparent;">
+            <children>
+                <VBox maxWidth="650.0" spacing="18.0" styleClass="card-container">
+                    <children>
+                        <!-- Cabeçalho -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                            <children>
+                                                <Label styleClass="title-medium" text="Agendar Consulta" />
+                                                <Label styleClass="badge-uc" text="UC04" />
+                                            </children>
+                                        </HBox>
+                                        <Label styleClass="subtitle" text="Escolha o paciente, médico veterinário, data e horário desejados" />
+                                    </children>
+                                </VBox>
+                                <Button onAction="#handleVoltar" styleClass="btn-secondary" text="← Voltar" />
+                            </children>
+                        </HBox>
+
+                        <!-- Formulário -->
+                        <VBox spacing="14.0">
+                            <children>
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Paciente (Animal) *" />
+                                        <ComboBox fx:id="cbPaciente" maxWidth="1.7976931348623157E308" promptText="Selecione o paciente cadastrado..." />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Médico Veterinário Responsável *" />
+                                        <ComboBox fx:id="cbVeterinario" maxWidth="1.7976931348623157E308" promptText="Selecione o profissional..." />
+                                    </children>
+                                </VBox>
+
+                                <GridPane hgap="14.0" vgap="14.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50.0" />
+                                        <ColumnConstraints percentWidth="50.0" />
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox spacing="6.0" GridPane.columnIndex="0">
+                                            <children>
+                                                <Label styleClass="field-label" text="Data da Consulta *" />
+                                                <DatePicker fx:id="dpData" maxWidth="1.7976931348623157E308" promptText="DD/MM/AAAA" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="6.0" GridPane.columnIndex="1">
+                                            <children>
+                                                <Label styleClass="field-label" text="Horário Disponível *" />
+                                                <ComboBox fx:id="cbHorario" maxWidth="1.7976931348623157E308" promptText="Selecione o horário" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                    </rowConstraints>
+                                </GridPane>
+
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Motivo da Consulta / Sintomas *" />
+                                        <TextField fx:id="txtMotivo" promptText="Ex: Vacinação de rotina, tosse persistente, vômito" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Observações Adicionais" />
+                                        <TextArea fx:id="txtObservacoes" prefRowCount="2" promptText="Informações complementares para a equipe" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Botões de Ação -->
+                        <HBox alignment="CENTER_RIGHT" spacing="12.0" style="-fx-padding: 12 0 0 0;">
+                            <children>
+                                <Button onAction="#handleVoltar" styleClass="btn-secondary" text="Cancelar" />
+                                <Button onAction="#handleAgendar" styleClass="btn-primary" text="Confirmar Agendamento" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+        </StackPane>
+    </content>
+</ScrollPane>

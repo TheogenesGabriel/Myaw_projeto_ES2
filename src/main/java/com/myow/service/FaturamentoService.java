@@ -51,6 +51,7 @@ public class FaturamentoService {
         }
         Atendimento atend = atendOpt.get();
 
+        // Evita registrar mais de um pagamento para o mesmo atendimento.
         Optional<Faturamento> jaFaturado = faturamentoDAO.buscarPorAtendimentoId(atendimentoId);
         if (jaFaturado.isPresent()) {
             return OperationResult.error("Este atendimento já foi faturado anteriormente.");

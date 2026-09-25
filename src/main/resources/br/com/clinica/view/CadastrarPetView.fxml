@@ -31,6 +31,7 @@
                         <!-- Formulário -->
                         <VBox spacing="14.0">
                             <children>
+                                <Label fx:id="lblNomeTutor" style="-fx-text-fill: #10b981; -fx-font-weight: bold; -fx-font-size: 14px;" text="Tutor: Nenhum selecionado" />
                                 <VBox spacing="6.0">
                                     <children>
                                         <Label styleClass="field-label" text="Tutor Responsável *" />

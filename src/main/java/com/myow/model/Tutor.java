@@ -26,6 +26,7 @@ public class Tutor {
 
     public String getNomeCompleto() { return nomeCompleto; }
     public void setNomeCompleto(String nomeCompleto) { this.nomeCompleto = nomeCompleto; }
+    public String getNome() { return nomeCompleto; }
 
     public String getCpf() { return cpf; }
     public void setCpf(String cpf) { this.cpf = cpf; }

@@ -5,15 +5,21 @@ import com.myow.service.OperationResult;
 import com.myow.service.TutorService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class TutoresView extends VBox {
@@ -31,10 +37,16 @@ public class TutoresView extends VBox {
 
     private void initUI() {
         // Top Header Card (Figma Style)
-        Button btnNovo = UIUtils.createPrimaryButton("+ Novo Tutor");
+        Button btnNovoAnimal = UIUtils.createPrimaryButton("🐾 Cadastrar Novo Animal");
+        btnNovoAnimal.setOnAction(e -> abrirCadastroNovoAnimal());
+
+        Button btnNovo = UIUtils.createSecondaryButton("+ Novo Tutor");
         btnNovo.setOnAction(e -> abrirModalNovoTutor());
 
-        HBox headerCard = UIUtils.createHeaderCard("👥  Gestão de Tutores", btnNovo);
+        HBox headerActions = new HBox(10, btnNovoAnimal, btnNovo);
+        headerActions.setAlignment(Pos.CENTER_RIGHT);
+
+        HBox headerCard = UIUtils.createHeaderCard("👥  Gestão de Tutores", headerActions);
 
         // Main Content Card
         VBox contentCard = UIUtils.createCard("-fx-padding: 20;");
@@ -99,12 +111,21 @@ public class TutoresView extends VBox {
         colEndereco.setPrefWidth(240);
 
         TableColumn<Tutor, Void> colAcoes = new TableColumn<>("AÇÕES");
-        colAcoes.setPrefWidth(130);
+        colAcoes.setPrefWidth(210);
         colAcoes.setCellFactory(col -> new TableCell<>() {
             private final Button btnSel = UIUtils.createSelectButton("🔍 Selecionar");
+            private final Button btnAnimal = new Button("🐾 Novo Animal");
+            private final HBox box = new HBox(6, btnSel, btnAnimal);
             {
+                btnAnimal.setStyle("-fx-background-color: #064e43; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 11px; -fx-padding: 6 10; -fx-background-radius: 6; -fx-cursor: hand;");
+                btnAnimal.setOnAction(e -> {
+                    Tutor t = getTableView().getItems().get(getIndex());
+                    table.getSelectionModel().select(t);
+                    abrirCadastroNovoAnimal();
+                });
                 btnSel.setOnAction(e -> {
                     Tutor t = getTableView().getItems().get(getIndex());
+                    table.getSelectionModel().select(t);
                     UIUtils.showInfo("Tutor Selecionado", "Tutor: " + t.getNomeCompleto() + "\nTelefone: " + t.getTelefone());
                 });
             }
@@ -115,7 +136,7 @@ public class TutoresView extends VBox {
                 if (empty || getIndex() >= getTableView().getItems().size()) {
                     setGraphic(null);
                 } else {
-                    setGraphic(btnSel);
+                    setGraphic(box);
                 }
             }
         });
@@ -208,5 +229,37 @@ public class TutoresView extends VBox {
             carregarDados();
             UIUtils.showInfo("Sucesso", "Tutor " + t.getNomeCompleto() + " cadastrado com sucesso!");
         });
+    }
+
+    private void abrirCadastroNovoAnimal() {
+        Tutor tutorSelecionado = table.getSelectionModel().getSelectedItem();
+        if (tutorSelecionado == null) {
+            UIUtils.showWarning("Atenção", "Por favor, selecione um Tutor na tabela para cadastrar o animal.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/clinica/view/CadastrarPetView.fxml"));
+            Parent root = loader.load();
+
+            br.com.clinica.controller.CadastrarPetController controller = loader.getController();
+            controller.setTutor(tutorSelecionado);
+
+            Stage stage = new Stage();
+            stage.setTitle("Cadastrar Novo Animal - Tutor: " + tutorSelecionado.getNomeCompleto());
+            Scene scene = new Scene(root, 950, 720);
+
+            var cssUrl = getClass().getResource("/br/com/clinica/css/style.css");
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException ex) {
+            UIUtils.showError("Erro", "Erro ao abrir tela de cadastro de animal: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 }

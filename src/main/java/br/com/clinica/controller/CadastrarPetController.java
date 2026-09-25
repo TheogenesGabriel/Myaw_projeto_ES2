@@ -8,12 +8,14 @@ import br.com.clinica.model.Tutor;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class CadastrarPetController {
 
+    @FXML private Label lblNomeTutor;
     @FXML private ComboBox<Tutor> cbTutor;
     @FXML private TextField txtNomePet;
     @FXML private ComboBox<String> cbEspecie;
@@ -24,8 +26,30 @@ public class CadastrarPetController {
     @FXML private ToggleGroup tgSexo;
     @FXML private TextArea txtHistorico;
 
+    private Tutor tutorSelecionado;
+
     private final TutorDAO tutorDAO = new TutorDAO();
     private final PacienteDAO pacienteDAO = new PacienteDAO();
+
+    public void setTutor(Tutor tutor) {
+        this.tutorSelecionado = tutor;
+        if (lblNomeTutor != null) {
+            lblNomeTutor.setText(tutor != null ? "Tutor: " + tutor.getNome() : "Tutor: Nenhum selecionado");
+        }
+        if (cbTutor != null && tutor != null) {
+            cbTutor.setValue(tutor);
+        }
+    }
+
+    public void setTutor(com.myow.model.Tutor tutorMyow) {
+        if (tutorMyow == null) return;
+        int idInt = 0;
+        try {
+            idInt = Integer.parseInt(tutorMyow.getId());
+        } catch (Exception ignored) {}
+        Tutor t = new Tutor(idInt, tutorMyow.getNomeCompleto(), tutorMyow.getCpf(), tutorMyow.getTelefone(), tutorMyow.getEmail(), tutorMyow.getEndereco());
+        setTutor(t);
+    }
 
     @FXML
     private void initialize() {
@@ -36,12 +60,19 @@ public class CadastrarPetController {
 
         // Carrega lista de tutores do banco SQLite
         carregarTutores();
+
+        if (tutorSelecionado != null && lblNomeTutor != null) {
+            lblNomeTutor.setText("Tutor: " + tutorSelecionado.getNome());
+        }
     }
 
     private void carregarTutores() {
         try {
             List<Tutor> tutores = tutorDAO.listarTodos();
             cbTutor.setItems(FXCollections.observableArrayList(tutores));
+            if (tutorSelecionado != null) {
+                cbTutor.setValue(tutorSelecionado);
+            }
         } catch (SQLException e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao Carregar Tutores", e.getMessage());
         }
@@ -49,7 +80,7 @@ public class CadastrarPetController {
 
     @FXML
     private void handleSalvar() {
-        Tutor tutorSelecionado = cbTutor.getValue();
+        Tutor tutor = (this.tutorSelecionado != null) ? this.tutorSelecionado : cbTutor.getValue();
         String nome = txtNomePet.getText() != null ? txtNomePet.getText().trim() : "";
         String especie = cbEspecie.getValue();
         String raca = txtRaca.getText() != null ? txtRaca.getText().trim() : "";
@@ -57,10 +88,12 @@ public class CadastrarPetController {
         String sexo = rbMacho.isSelected() ? "Macho" : (rbFemea.isSelected() ? "Fêmea" : "");
         String historico = txtHistorico.getText() != null ? txtHistorico.getText().trim() : "";
 
-        if (tutorSelecionado == null || nome.isEmpty() || especie == null || raca.isEmpty() || idadeStr.isEmpty() || sexo.isEmpty()) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Campos Obrigatórios", "Atenção", "Preencha todos os campos obrigatórios do paciente.");
+        if (tutor == null || nome.isEmpty() || especie == null || raca.isEmpty() || idadeStr.isEmpty() || sexo.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Campos Obrigatórios", "Atenção", "Preencha todos os campos obrigatórios do paciente e certifique-se de que o tutor está vinculado.");
             return;
         }
+
+        this.tutorSelecionado = tutor;
 
         int idade;
         try {
@@ -87,6 +120,13 @@ public class CadastrarPetController {
 
     @FXML
     private void handleVoltar() {
+        if (lblNomeTutor != null && lblNomeTutor.getScene() != null && lblNomeTutor.getScene().getWindow() instanceof Stage) {
+            Stage currentStage = (Stage) lblNomeTutor.getScene().getWindow();
+            if (currentStage != MainApp.getPrimaryStage()) {
+                currentStage.close();
+                return;
+            }
+        }
         MainApp.navegarPara("/br/com/clinica/view/ServicosView.fxml", "Serviços da Clínica");
     }
 

@@ -43,7 +43,7 @@ public class DashboardView extends ScrollPane {
         root.setStyle("-fx-background-color: transparent;");
 
         // 1. Header Card (Figma Layout Pattern)
-        Button btnNovoAgendamentoTop = UIUtils.createPrimaryButton("+ Novo Agendamento");
+        Button btnNovoAgendamentoTop = UIUtils.createPrimaryButton("Adicionar/Alterar consulta");
         btnNovoAgendamentoTop.setOnAction(e -> navigationHandler.accept("Agendamentos"));
 
         HBox headerCard = UIUtils.createHeaderCard("📊  Painel de Controle", btnNovoAgendamentoTop);
@@ -102,7 +102,7 @@ public class DashboardView extends ScrollPane {
 
         // Quick Actions Row
         HBox actionsRow = new HBox(12);
-        Button btnNovoAgendamento = UIUtils.createPrimaryButton("+ Novo Agendamento");
+        Button btnNovoAgendamento = UIUtils.createPrimaryButton("Adicionar/Alterar consulta");
         btnNovoAgendamento.setOnAction(e -> navigationHandler.accept("Agendamentos"));
 
         Button btnFilaAtendimento = UIUtils.createSecondaryButton("🩺 Atendimento Clínico");

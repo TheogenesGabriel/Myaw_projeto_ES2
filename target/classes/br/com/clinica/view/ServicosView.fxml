@@ -75,7 +75,7 @@
                                 </Button>
 
                                 <!-- UC04 -->
-                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC04" styleClass="service-card-btn">
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleIrParaUC04" styleClass="service-card-btn" text="Adicionar/Alterar consulta">
                                     <graphic>
                                         <HBox alignment="CENTER_LEFT" spacing="14.0">
                                             <children>
@@ -84,7 +84,7 @@
                                                     <children>
                                                         <HBox spacing="8.0">
                                                             <children>
-                                                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Agendar Consulta" />
+                                                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Adicionar/Alterar consulta" />
                                                                 <Label styleClass="badge-uc" text="UC04" />
                                                             </children>
                                                         </HBox>

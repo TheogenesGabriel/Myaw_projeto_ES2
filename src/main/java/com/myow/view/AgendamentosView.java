@@ -40,7 +40,7 @@ public class AgendamentosView extends VBox {
 
     private void initUI() {
         // 1. Top Floating Header Card (Figma Screenshot 2)
-        Button btnNovo = UIUtils.createPrimaryButton("+ Nova Consulta");
+        Button btnNovo = UIUtils.createPrimaryButton("Adicionar Agendamento");
         btnNovo.setOnAction(e -> abrirModalNovaConsulta());
 
         HBox headerCard = UIUtils.createHeaderCard("📅  Consultas Agendadas", btnNovo);

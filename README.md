@@ -178,6 +178,10 @@ mvn javafx:run
 
 > ⚠️ Essas credenciais existem apenas para demonstração acadêmica. Em um ambiente real, as senhas não devem ser armazenadas em texto puro nem usar valores padrão.
 
-## 👥 Autores
-
-<!-- Nomes da equipe, professor(a) e instituição -->
+## 👥 Autores 
+ 
+- Andrei Luiz da Silva Rodrigues 
+- Gabriel Cavalcanti Coelho 
+- Maria Bianca Vitória Coelho Marinho de Lima 
+- Maria Eugênia Cavalcanti Gomes da Silva 
+- Theógenes Gabriel Araujo de Andrade isso aqui da pra botar diretamente no git

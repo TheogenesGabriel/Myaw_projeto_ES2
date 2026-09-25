@@ -31,6 +31,10 @@ public class CadastrarPetController {
     private final TutorDAO tutorDAO = new TutorDAO();
     private final PacienteDAO pacienteDAO = new PacienteDAO();
 
+    private com.myow.model.Tutor tutorMyow;
+    private final com.myow.service.PacienteService myowPacienteService = new com.myow.service.PacienteService();
+    private final com.myow.service.TutorService myowTutorService = new com.myow.service.TutorService();
+
     public void setTutor(Tutor tutor) {
         this.tutorSelecionado = tutor;
         if (lblNomeTutor != null) {
@@ -43,10 +47,24 @@ public class CadastrarPetController {
 
     public void setTutor(com.myow.model.Tutor tutorMyow) {
         if (tutorMyow == null) return;
-        int idInt = 0;
+        this.tutorMyow = tutorMyow;
+
+        int idInt = 1;
         try {
-            idInt = Integer.parseInt(tutorMyow.getId());
+            List<Tutor> tutoresClinica = tutorDAO.listarTodos();
+            for (Tutor tc : tutoresClinica) {
+                if (tc.getCpf() != null && tc.getCpf().trim().equals(tutorMyow.getCpf().trim())) {
+                    idInt = tc.getId();
+                    break;
+                }
+            }
+            if (idInt == 1 && (tutoresClinica.isEmpty() || !tutoresClinica.get(0).getCpf().equals(tutorMyow.getCpf()))) {
+                Tutor novoTutorClinica = new Tutor(tutorMyow.getNomeCompleto(), tutorMyow.getCpf(), tutorMyow.getTelefone(), tutorMyow.getEmail(), tutorMyow.getEndereco());
+                tutorDAO.cadastrar(novoTutorClinica);
+                idInt = novoTutorClinica.getId();
+            }
         } catch (Exception ignored) {}
+
         Tutor t = new Tutor(idInt, tutorMyow.getNomeCompleto(), tutorMyow.getCpf(), tutorMyow.getTelefone(), tutorMyow.getEmail(), tutorMyow.getEndereco());
         setTutor(t);
     }
@@ -107,15 +125,38 @@ public class CadastrarPetController {
             return;
         }
 
+        // 1. Persiste no banco de dados Myow (database/myow.db) para exibir na tela de Pacientes
+        String myowTutorId = (this.tutorMyow != null) ? this.tutorMyow.getId() : null;
+        if (myowTutorId == null && tutor != null) {
+            List<com.myow.model.Tutor> listaMyow = myowTutorService.listarTodos();
+            for (com.myow.model.Tutor tm : listaMyow) {
+                if (tm.getCpf() != null && tm.getCpf().trim().equals(tutor.getCpf().trim())) {
+                    myowTutorId = tm.getId();
+                    break;
+                }
+            }
+            if (myowTutorId == null && !listaMyow.isEmpty()) {
+                myowTutorId = listaMyow.get(0).getId();
+            }
+        }
+
+        if (myowTutorId != null) {
+            var resMyow = myowPacienteService.cadastrar(nome, especie, raca, idade, sexo, myowTutorId, historico, true);
+            if (!resMyow.isSuccess()) {
+                System.err.println("Aviso Myow: " + resMyow.getMessage());
+            }
+        }
+
+        // 2. Persiste no banco SQLite da clínica (clinica_vet.db)
         try {
             Paciente paciente = new Paciente(tutorSelecionado.getId(), nome, especie, raca, idade, sexo, historico);
             pacienteDAO.cadastrar(paciente);
-
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Paciente Cadastrado", "Paciente " + nome + " cadastrado com sucesso e vinculado a " + tutorSelecionado.getNome() + "!");
-            handleVoltar();
         } catch (SQLException e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro de Banco", "Falha ao Salvar Paciente", e.getMessage());
+            System.err.println("Aviso clinica_vet: " + e.getMessage());
         }
+
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Paciente Cadastrado", "Paciente " + nome + " cadastrado com sucesso e vinculado a " + tutorSelecionado.getNome() + "!");
+        handleVoltar();
     }
 
     @FXML

@@ -37,6 +37,8 @@ public class RelatorioService {
     public Map<String, Object> gerarResumoFinanceiro(String dataInicio, String dataFim) {
         List<Faturamento> lista = filtrarFaturamento(dataInicio, dataFim);
         double total = lista.stream().mapToDouble(Faturamento::getValorTotal).sum();
+        
+        // Mantém o ticket médio em zero quando não há faturamentos no período.
         double ticketMedio = lista.isEmpty() ? 0.0 : total / lista.size();
 
         double totalDinheiro = lista.stream().filter(f -> f.getFormaPagamento() == FormaPagamento.DINHEIRO).mapToDouble(Faturamento::getValorTotal).sum();
